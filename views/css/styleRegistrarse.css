@@ -1,0 +1,14 @@
+body{
+    padding: 1rem;
+    background-image: url("/img/Fondo.png");
+    background-size: 100% 150%;
+}
+.container{
+    width: 70%;
+    height: 70%;
+    padding: 1rem;
+    color: #017143;
+    border-radius: 30px;
+    border-style:double;
+    border-color: #017143;
+}

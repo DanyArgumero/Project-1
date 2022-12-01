@@ -1,0 +1,201 @@
+CREATE TABLE IF NOT EXISTS public."elementos_quirurgicos"
+(
+    "Id_Elementos" serial  NOT NULL,
+    "Descripcion" character varying(100)[] COLLATE pg_catalog."default" NOT NULL,
+	usuario_idusuario integer NOT NULL,
+    CONSTRAINT "Elementos_Quirurgicos_pkey" PRIMARY KEY ("Id_Elementos")
+);
+
+CREATE TABLE IF NOT EXISTS public."insumos"
+(
+    "Id_Insumos" serial NOT NULL,
+    "Descripcion" character varying(100)[] COLLATE pg_catalog."default" NOT NULL,
+	usuario_idusuario integer NOT NULL,
+    CONSTRAINT "Insumos_pkey" PRIMARY KEY ("Id_Insumos")
+);
+
+CREATE TABLE IF NOT EXISTS public.alimentos
+(
+    idalimentos serial NOT NULL,
+    descripcion character varying(45) COLLATE pg_catalog."default" NOT NULL,
+    precio integer NOT NULL,
+	usuario_idusuario integer NOT NULL,
+    CONSTRAINT alimentos_pkey PRIMARY KEY (idalimentos)
+);
+
+CREATE TABLE IF NOT EXISTS public.medicamentos
+(
+    idmedicamentos serial NOT NULL,
+    descripcion character varying(45) COLLATE pg_catalog."default" NOT NULL,
+    precio integer NOT NULL,
+	usuario_idusuario integer NOT NULL,
+    CONSTRAINT medicamentos_pkey PRIMARY KEY (idmedicamentos)
+);
+
+CREATE TABLE IF NOT EXISTS public.rol
+(
+    idrol serial NOT NULL,
+    rol character varying(45) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT rol_pkey PRIMARY KEY (idrol)
+);
+
+CREATE TABLE IF NOT EXISTS public.usuario
+(
+    idusuario serial NOT NULL,
+    email character varying(45) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(45) COLLATE pg_catalog."default" NOT NULL,
+    rol_idrol integer NOT NULL,
+    nombre character varying(50) COLLATE pg_catalog."default",
+    telefono character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT usuario_pkey PRIMARY KEY (idusuario)
+);
+
+ALTER TABLE IF EXISTS public.usuario
+    ADD CONSTRAINT fk_usuario_rol1 FOREIGN KEY (rol_idrol)
+    REFERENCES public.rol (idrol) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
+	
+ALTER TABLE IF EXISTS public.alimentos
+    ADD CONSTRAINT fk_alimentos_rol FOREIGN KEY (usuario_idusuario)
+    REFERENCES public.usuario (idusuario) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
+	
+	ALTER TABLE IF EXISTS public.medicamentos
+    ADD CONSTRAINT medicamentos_rol FOREIGN KEY (usuario_idusuario)
+    REFERENCES public.usuario (idusuario) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
+	
+	ALTER TABLE IF EXISTS public.Insumos
+    ADD CONSTRAINT fk_Insumos_usuario FOREIGN KEY (usuario_idusuario)
+    REFERENCES public.usuario (idusuario) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
+	
+	ALTER TABLE IF EXISTS public.Elementos_Quirurgicos
+    ADD CONSTRAINT fk_Elementos_usuario FOREIGN KEY (usuario_idusuario)
+    REFERENCES public.usuario (idusuario) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
+
+
+
+------------------------------------------------------
+
+INSERSION DE DATOS 
+
+
+INSERT INTO 
+	rol(rol)
+VALUES 
+	('ADMIN'),
+	('EMPLEADO'),
+	('CLIENTE');
+
+
+INSERT INTO 
+	usuario(email, password, rol_idrol, nombre, telefono)
+VALUES 
+	('Pedro@gmail.com', '123', 2 , 'Pedro Coe', '73123123'),
+	('Carlos@gmail.com', '123', 2 , 'Carlos Castro', '1235653'),
+	('Fernanda@gmail.com', '123', 3 , 'Fernanda Lozano', '17865298612'),
+	('Maria@gmail.com', '123', 3 , 'Maria Marin', '1238969134'),
+	('Silvana@gmail.com', '123', 3 , 'Silvana Gonzales', '12387679'),
+	('admin@gmail.com', '123', 1 , 'admin', '657324246');
+	
+	
+
+
+
+INSERT INTO 
+	alimentos(descripcion, precio, usuario_idusuario)
+VALUES  
+	('Pedigree',14700, 1),
+	('Equilibrio',16800, 1),
+	('Guamour',22300, 1),
+	('Besties',32000, 1),
+	('Nutrique',47000, 1);
+
+
+INSERT INTO 
+	medicamentos(descripcion, precio, usuario_idusuario)
+VALUES  
+	('Meloxicam',14700, 1),
+	('Novabismol',16800, 1),
+	('Nexgard',22300, 1),
+	('Petite paws',32000, 1),
+	('Galgocals',47000, 1);
+
+
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Kit Quirurgico Veterinario        ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Tinta para tatuador        ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Pinza para despezunar      ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Caravana para bovino, ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Caravana para ovino ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Aplicador de caravana        ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Jeringa de metal        ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Aguja de metal-veterinario', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Cortador/Tijera de pajuela', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Tatuador       ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Vaina protectora ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Escrotimetro         ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Guante de procedimiento ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Jeringa desechable con aguja ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Pinza de extracción       ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Tijera de metal para esquilar ovejas ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Algodón hidrofilo         ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Alicador Universal ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Dispositivo intravaginal con progesterona           ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Mocheta para bovino        ', 1);
+INSERT INTO elementos_quirurgicos(descripcion, usuario_idusuario) VALUES (' Pinza descornador     ', 1);
+
+INSERT INTO insumos (descripcion, usuario_idusuario) VALUES (' Camisa para vagina artificial         ', 1);
+INSERT INTO insumos (descripcion, usuario_idusuario) VALUES (' Delantal plástico, impermeable tamaño pequeño, mediano y grande        ', 1);
+INSERT INTO insumos (descripcion, usuario_idusuario) VALUES (' Protector contra avispas, conjunto completo        ', 1);
+INSERT INTO insumos (descripcion, usuario_idusuario) VALUES (' Piloto impermeable, color amarillo chaqueta y pantalon impermeable       ', 1);
+INSERT INTO insumos (descripcion, usuario_idusuario) VALUES (' Piloto impermeable color amarillo, solo chaqueta impermeable       ', 1);
+INSERT INTO insumos (descripcion, usuario_idusuario) VALUES (' Zapato blanco, plantilla de goma blanca, para uso de laboratorio       ', 1);
+INSERT INTO insumos (descripcion, usuario_idusuario) VALUES (' Guantes de tela        ', 1);
+INSERT INTO insumos (descripcion, usuario_idusuario) VALUES (' Tapa boca de algodón color blanco     ', 1);
+INSERT INTO insumos (descripcion, usuario_idusuario) VALUES (' Traje de proteccion para riesgos quimicos        ', 1);
+INSERT INTO insumos (descripcion, usuario_idusuario) VALUES (' Guante de cuero grande        ', 1);
+	
+
+
+-----------------------------------------------------
+Terminar Sesiones para eliminar la base de datos. 
+
+
+
+SELECT pg_terminate_backend(pg_stat_activity.pid)
+ FROM pg_stat_activity
+ WHERE datname = 'Veterinaria'
+  AND pid <> pg_backend_pid();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

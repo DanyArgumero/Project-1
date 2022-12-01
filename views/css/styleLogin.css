@@ -1,0 +1,76 @@
+body{
+    padding: 1rem;
+    background-image: url("/img/Fondo.png");
+    background-size: 100% 150%;
+}
+.container{
+    width: 40%;
+    height: 60%;
+    padding: 1rem;
+    color: #017143;
+    border-radius: 30px;
+    border-style:double;
+    border-color: #017143;
+    float: right;
+}
+header{
+    text-align: center;
+    padding: 1rem;
+    background-color: #017143;
+    color: #ffffff;
+    border-radius: 30px;
+    margin-bottom: 2rem;
+}
+.form-control{
+    background-color: transparent;
+}
+.circle
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #017143;
+    clip-path: circle(700px at left 900px);
+    z-index: -1;
+}
+.imgBox{
+    align-items: flex-start;
+     z-index: 1;
+}
+.imgBox2{
+    align-items: flex-start;
+     z-index: 1;
+}
+.imgBox3{
+    align-items: flex-start;
+     z-index: 1;
+}
+#Perro{
+    height: 100%;
+    width: 30%;
+    position: absolute;
+    left: 0;
+    bottom: 0; 
+}
+
+#Gato{
+    height: 50%;
+    width: 12%;
+    position: absolute;
+    left: 33%;
+    bottom: 0; 
+}
+#Perro2{
+    height: 60%;
+    width: 15%;
+    position: absolute;
+    left: 22%;
+    bottom: 0;  
+}
+
+
+a{
+    color: #017143;
+}
